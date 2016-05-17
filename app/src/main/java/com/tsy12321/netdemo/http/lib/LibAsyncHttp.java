@@ -1,4 +1,4 @@
-package com.tsy12321.netdemo.http;
+package com.tsy12321.netdemo.http.lib;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;

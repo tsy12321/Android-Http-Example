@@ -3,6 +3,7 @@ package com.tsy12321.netdemo.http;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.tsy12321.netdemo.http.lib.LibAsyncHttp;
 
 import org.json.JSONObject;
 
@@ -11,7 +12,7 @@ import java.util.Map;
 import cz.msebera.android.httpclient.Header;
 
 /**
- * android-async-http 胶水接口
+ * android-async-http 胶水层
  * Created by tsy on 16/5/17.
  */
 public class MyAsyncHttp {
