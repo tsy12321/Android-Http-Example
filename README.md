@@ -1,10 +1,10 @@
 # Android-Http-Example
-Android相关http框架的使用和封装。包括HttpUrlConnection, android-async-http, volley, okHttp, litehttp等网络请求框架.
+Android相关http框架的使用和封装。包括使用HttpUrlConnection, android-async-http, volley, okHttp, litehttp等网络请求框架.
 
 ## 1. 功能介绍
 
 1. 对网络层进行封装,可以随时切换底层网络请求库
-1. 封装android-async-http网络请求
+1. 封装android-async-http网络请求.简单post请求,get请求,cookie功能
 1. 封装基于HttpUrlConnection的简单网络请求
 1. 封装volley网络请求
 1. 封装litehttp网络请求

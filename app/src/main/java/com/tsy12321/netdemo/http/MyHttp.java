@@ -1,5 +1,9 @@
 package com.tsy12321.netdemo.http;
 
+import android.content.Context;
+
+import com.tsy12321.netdemo.http.lib.LibAsyncHttp;
+
 import java.util.Map;
 
 /**
@@ -10,7 +14,14 @@ import java.util.Map;
 public class MyHttp {
 
     /**
-     * Post 回调原始数据
+     * 初始化(某些网络请求库需要传入context)
+     */
+    public static void init(Context context) {
+        LibAsyncHttp.init(context);
+    }
+
+    /**
+     * Post 回调原始数据 如果需要其他格式返回则增加不同的responseHandler
      * @param url
      * @param params
      * @param responseHandler
@@ -21,7 +32,8 @@ public class MyHttp {
     }
 
     /**
-     * Post 回调Json数据
+     * Post 文本参数
+     * 回调Json数据
      * @param url
      * @param params
      * @param responseHandler
@@ -31,19 +43,10 @@ public class MyHttp {
         MyAsyncHttp.doLibAsyncHttpPost(url, params, responseHandler);
     }
 
-    /**
-     * Get 回调原始数据
-     * @param url
-     * @param params
-     * @param responseHandler
-     */
-    public static void doGet(String url, Map<String, String>params, final MyHttpResponseHandler responseHandler) {
-        //android-async-http
-        MyAsyncHttp.doLibAsyncHttpGet(url, params, responseHandler);
-    }
+
 
     /**
-     * Get 回调Json数据
+     * Get请求
      * @param url
      * @param params
      * @param responseHandler

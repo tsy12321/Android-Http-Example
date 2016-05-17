@@ -58,24 +58,6 @@ public class MyAsyncHttp {
         });
     }
 
-    //android-async-http get原始数据
-    public static void doLibAsyncHttpGet(String url, Map<String, String>params, final MyHttpResponseHandler responseHandler) {
-        //android-async-http
-        RequestParams rparams = new RequestParams(params);
-
-        LibAsyncHttp.get(url, rparams, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                responseHandler.onSuccess(statusCode, responseBody);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                responseHandler.onFailure(statusCode, responseBody);
-            }
-        });
-    }
-
     //android-async-http get json数据
     public static void doLibAsyncHttpGet(String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
