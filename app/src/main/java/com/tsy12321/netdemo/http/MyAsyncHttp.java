@@ -1,5 +1,7 @@
 package com.tsy12321.netdemo.http;
 
+import android.content.Context;
+
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -16,6 +18,13 @@ import cz.msebera.android.httpclient.Header;
  * Created by tsy on 16/5/17.
  */
 public class MyAsyncHttp {
+
+    /**
+     * 初始化context
+     */
+    public static void init(Context context) {
+        LibAsyncHttp.init(context);
+    }
 
     //android-async-http post原始数据
     public static void doLibAsyncHttpPost(String url, Map<String, String> params, final MyHttpResponseHandler responseHandler) {

@@ -17,7 +17,8 @@ public class MyHttp {
      * 初始化(某些网络请求库需要传入context)
      */
     public static void init(Context context) {
-        LibAsyncHttp.init(context);
+        //android-async-http
+        MyAsyncHttp.init(context);
     }
 
     /**

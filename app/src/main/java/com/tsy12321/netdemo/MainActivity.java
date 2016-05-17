@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //http初始化
+        MyHttp.init(getApplicationContext());
+
         testHttp();
     }
 
