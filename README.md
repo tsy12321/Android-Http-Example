@@ -27,7 +27,19 @@ Android相关http框架的使用和封装。包括使用HttpUrlConnection, andro
 
 文档:https://loopj.com/android-async-http/doc/
 
-1. LibAsyncHttp **对android-async-http的请求封装**
-1. MyAsyncHttp **调用LibAsyncHttp请求的胶水层.处理MyHttp和LibAsyncHttp之间的通信**
+代码介绍:
+- LibAsyncHttp **对android-async-http的请求封装**
+- MyAsyncHttp **调用LibAsyncHttp请求的胶水层.处理MyHttp和LibAsyncHttp之间的通信**
+
+### volley
+
+Git地址：https://android.googlesource.com/platform/frameworks/volley
+
+官网地址：https://developer.android.com/training/volley/index.html?hl=zh-cn
+
+引入volley注意点:
+- git clone后选用android-6.0.1_25 tag的版本,用master最新的出错
+- 将下载后的volley拷贝到项目中删除.git目录以import module的方式导入项目
+- 修改gradle版本,添加dependency即引入volley成功
 
 
