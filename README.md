@@ -14,7 +14,8 @@ Android相关http框架的使用和封装。包括使用HttpUrlConnection, andro
 ## 2. 网络封装层
 
 1. MyHttp **封装了一层App统一调用的Http接口层,在里面可以方便切换网络请求库**
-1. MyHttpJsonResponseHandler **回调抽象类 返回json格式数据**
+1. MyHttpJsonResponseHandler **普通请求回调抽象类 json格式数据**
+1. MyHttpFileResponseHandler **文件下载回调抽象类**
 1. todo... 如果需要其他返回数据可以定义其他的responseHander接口
 
 
