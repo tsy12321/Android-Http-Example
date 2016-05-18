@@ -54,5 +54,15 @@ public class MyHttp {
         MyAsyncHttp.doLibAsyncHttpGet(url, params, responseHandler);
     }
 
+    /**
+     * 下载文件
+     * @param url 下载地址
+     * @param target 下载目的file
+     * @param responseHandler
+     */
+    public static void doDownload(String url, File target, final MyHttpFileResponseHandler responseHandler) {
+        //android-async-http
+        MyAsyncHttp.doLibAsyncHttpDownload(url, target, responseHandler);
+    }
 
 }

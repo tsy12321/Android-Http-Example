@@ -2,6 +2,7 @@ package com.tsy12321.netdemo.http;
 
 import android.content.Context;
 
+import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.tsy12321.netdemo.http.lib.LibAsyncHttp;
@@ -27,7 +28,7 @@ public class MyAsyncHttp {
         LibAsyncHttp.init(context);
     }
 
-    //android-async-http post json数据
+    //post 返回json数据
     public static void doLibAsyncHttpPost(String url, Map<String, String>params, Map<String, File>files, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
         RequestParams rparams = new RequestParams(params);
@@ -66,7 +67,7 @@ public class MyAsyncHttp {
         });
     }
 
-    //android-async-http get json数据
+    //get 返回json数据
     public static void doLibAsyncHttpGet(String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
         RequestParams rparams = new RequestParams(params);
@@ -85,6 +86,25 @@ public class MyAsyncHttp {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 responseHandler.onFailure(statusCode, errorResponse);
+            }
+        });
+    }
+
+    public static void doLibAsyncHttpDownload(String url, File target, final MyHttpFileResponseHandler responseHandler) {
+        LibAsyncHttp.get(url, null, new FileAsyncHttpResponseHandler(target) {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
+                responseHandler.onFailure(statusCode, "download error");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, File file) {
+                responseHandler.onSuccess(statusCode);
+            }
+
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+                responseHandler.onProgress(bytesWritten, totalSize);
             }
         });
     }
