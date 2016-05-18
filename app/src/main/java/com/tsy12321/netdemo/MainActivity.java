@@ -1,6 +1,7 @@
 package com.tsy12321.netdemo;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -8,6 +9,10 @@ import com.tsy12321.netdemo.http.MyHttp;
 import com.tsy12321.netdemo.http.MyHttpJsonResponseHandler;
 
 import org.json.JSONObject;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +30,14 @@ public class MainActivity extends AppCompatActivity {
     //android-async-http网络库
     private void testHttp() {
 
-        MyHttp.doPost("https://secure-service.ci123.com/account/main.php/json/login/phone", null, new MyHttpJsonResponseHandler() {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("uid", "asasa");
+
+        File file = new File(Environment.getExternalStorageDirectory() + "/girls/head/output_tmp.jpg");
+        Log.i("ysu", "exists " + file.exists() + " canExecute" + file.canExecute() + " canRead" + file.canRead() + " canWrite" + file.canWrite());
+        Map<String, File> files = new HashMap<String, File>();
+        files.put("avatar", file);
+        MyHttp.doPost("http://192.168.3.1/test_post.php", params, files, new MyHttpJsonResponseHandler() {
             @Override
             public void onSuccess(int statusCode, JSONObject response) {
                 Log.i("tsy", "onSuccess status code=" + statusCode + " response=" + response);
@@ -41,20 +53,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("tsy", "onFailure status code=" + statusCode + " error_msg=" + error_msg);
             }
         });
-
-        /*
-        MyHttp.doPost("https://secure-service.ci123.com/account/main.php/json/login/phone", null, new MyHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, byte[] responseBody) {
-                Log.i("tsy", "status code=" + statusCode + " response=" + new String(responseBody));
-            }
-
-            @Override
-            public void onFailure(int statusCode, byte[] responseBody) {
-                Log.i("tsy", "status code=" + statusCode + " response=" + new String(responseBody));
-            }
-        });
-        */
     }
 }

@@ -2,8 +2,7 @@ package com.tsy12321.netdemo.http;
 
 import android.content.Context;
 
-import com.tsy12321.netdemo.http.lib.LibAsyncHttp;
-
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -22,17 +21,6 @@ public class MyHttp {
     }
 
     /**
-     * Post 回调原始数据 如果需要其他格式返回则增加不同的responseHandler
-     * @param url
-     * @param params
-     * @param responseHandler
-     */
-    public static void doPost(String url, Map<String, String>params, final MyHttpResponseHandler responseHandler) {
-        //android-async-http
-        MyAsyncHttp.doLibAsyncHttpPost(url, params, responseHandler);
-    }
-
-    /**
      * Post 文本参数
      * 回调Json数据
      * @param url
@@ -40,11 +28,20 @@ public class MyHttp {
      * @param responseHandler
      */
     public static void doPost(String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
-        //android-async-http
-        MyAsyncHttp.doLibAsyncHttpPost(url, params, responseHandler);
+        doPost(url, params, null, responseHandler);
     }
 
-
+    /**
+     * Post 文本 文件混合参数
+     * @param url
+     * @param params
+     * @param files key-file方式
+     * @param responseHandler
+     */
+    public static void doPost(String url, Map<String, String>params, Map<String, File>files, final MyHttpJsonResponseHandler responseHandler) {
+        //android-async-http
+        MyAsyncHttp.doLibAsyncHttpPost(url, params, files, responseHandler);
+    }
 
     /**
      * Get请求
@@ -56,8 +53,6 @@ public class MyHttp {
         //android-async-http
         MyAsyncHttp.doLibAsyncHttpGet(url, params, responseHandler);
     }
-
-    /******************************android-async-http封装*****************************/
 
 
 }

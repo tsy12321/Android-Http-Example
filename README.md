@@ -4,7 +4,7 @@ Android相关http框架的使用和封装。包括使用HttpUrlConnection, andro
 ## 1. 功能介绍
 
 1. 对网络层进行封装,可以随时切换底层网络请求库
-1. 封装android-async-http网络请求.简单post请求,get请求,cookie功能
+1. 封装android-async-http网络请求.功能:post请求,get请求,cookie,上传文件
 1. 封装基于HttpUrlConnection的简单网络请求
 1. 封装volley网络请求
 1. 封装litehttp网络请求
@@ -14,8 +14,8 @@ Android相关http框架的使用和封装。包括使用HttpUrlConnection, andro
 ## 2. 网络封装层
 
 1. MyHttp **封装了一层App统一调用的Http接口层,在里面可以方便切换网络请求库**
-1. MyHttpResponseHandler **回调抽象类 返回原始数据**
 1. MyHttpJsonResponseHandler **回调抽象类 返回json格式数据**
+1. todo... 如果需要其他返回数据可以定义其他的responseHander接口
 
 
 ## 3. 第三方网络请求库
