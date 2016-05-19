@@ -28,6 +28,7 @@ Android网络请求的统一封装和调用.集成了android-async-http, volley�
 示例:https://github.com/loopj/android-async-http/tree/master/sample/src/main/java/com/loopj/android/http/sample
 
 注意点:
+
 1. 取消请求接口cancelAllRequest,cancelRequest,cancelRequestByTag都必须在post,get时加上参数Context,否则cancel不起作用
 
 ### volley
@@ -37,6 +38,7 @@ Git地址：https://android.googlesource.com/platform/frameworks/volley
 官网地址：https://developer.android.com/training/volley/index.html?hl=zh-cn
 
 注意点:
+
 1. git clone后选用android-6.0.1_25 tag的版本,用master最新的出错.将下载后的volley拷贝到项目中删除.git目录以import module的方式导入项目.修改gradle版本,添加dependency即引入volley成功
 
 ## 2 项目结构
