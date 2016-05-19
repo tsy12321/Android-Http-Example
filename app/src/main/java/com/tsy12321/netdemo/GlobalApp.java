@@ -10,7 +10,7 @@ import android.content.Context;
 public class GlobalApp extends Application {
 
     private static GlobalApp app;
-    private static Context context;
+    private Context context;
 
     @Override
     public void onCreate() {
