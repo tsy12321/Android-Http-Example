@@ -22,22 +22,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //http初始化
-        MyHttp.init(getApplicationContext());
-
-        testHttp();
-        //testDownload();
+        doHttp();
+        //doDownload();
     }
 
-    private void testHttp() {
+    //页面销毁关闭请求 防止crash 建议放到BaseActivity BaseFragrament里面
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        MyHttp.cancelRequest(this);     //页面退出 关闭所有请求
+    }
+
+    private void doHttp() {
+        //文本参数
         Map<String, String> params = new HashMap<String, String>();
-        params.put("uid", "asasa");
-
+        params.put("uid", "111");
+        //文件参数
         File file = new File(Environment.getExternalStorageDirectory() + "/girls/head/output_tmp.jpg");
         Map<String, File> files = new HashMap<String, File>();
         files.put("avatar", file);
-        MyHttp.doPost("http://192.168.3.1/test_post.php", params, files, new MyHttpJsonResponseHandler() {
+        //post
+        MyHttp.doPost(this, "http://192.168.3.1/test_post.php", params, files, new MyHttpJsonResponseHandler() {
             @Override
             public void onSuccess(int statusCode, JSONObject response) {
                 Log.i("tsy", "onSuccess status code=" + statusCode + " response=" + response);
@@ -52,12 +58,22 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(int statusCode, String error_msg) {
                 Log.i("tsy", "onFailure status code=" + statusCode + " error_msg=" + error_msg);
             }
+
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+                Log.v("myhttp", String.format("Progress %d from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1));
+            }
+
+            @Override
+            public void onCancel() {
+                Log.v("myhttp", "request on cancel");
+            }
         });
     }
 
-    private void testDownload() {
-        File file = new File(Environment.getExternalStorageDirectory() + "/girls/head/output_tmp2.jpg");
-        MyHttp.doDownload("http://192.168.3.1/head.jpg", file, new MyHttpFileResponseHandler() {
+    private void doDownload() {
+        File file = new File(Environment.getExternalStorageDirectory() + "/girls/head/output_tmp2.jpg");    //下载后存储的file位置
+        MyHttp.doDownload(this, "http://192.168.3.1/head.jpg", file, new MyHttpFileResponseHandler() {
             @Override
             public void onSuccess(int statusCode) {
                 Log.i("tsy", "onSuccess status code=" + statusCode);
@@ -71,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgress(long bytesWritten, long totalSize) {
                 Log.v("myhttp", String.format("Progress %d from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1));
+            }
+
+            @Override
+            public void onCancel() {
+                Log.v("myhttp", "request on cancel");
             }
         });
     }

@@ -1,10 +1,12 @@
-package com.tsy12321.netdemo.http;
+package com.tsy12321.netdemo.http.glue;
 
 import android.content.Context;
 
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.tsy12321.netdemo.http.MyHttpFileResponseHandler;
+import com.tsy12321.netdemo.http.MyHttpJsonResponseHandler;
 import com.tsy12321.netdemo.http.lib.LibAsyncHttp;
 
 import org.json.JSONObject;
@@ -22,15 +24,14 @@ import cz.msebera.android.httpclient.Header;
 public class MyAsyncHttp {
 
     /**
-     * 初始化context
+     * 调用async-http post请求
+     * @param context 当前context
+     * @param url
+     * @param params 文本参数
+     * @param files 文件参数
+     * @param responseHandler
      */
-    public static void init(Context context) {
-        LibAsyncHttp.init(context);
-    }
-
-    //post 返回json数据
-    public static void doLibAsyncHttpPost(String url, Map<String, String>params, Map<String, File>files, final MyHttpJsonResponseHandler responseHandler) {
-        //android-async-http
+    public static void doLibAsyncHttpPost(Context context, String url, Map<String, String>params, Map<String, File>files, final MyHttpJsonResponseHandler responseHandler) {
         RequestParams rparams = new RequestParams(params);
 
         //上传文件
@@ -44,7 +45,7 @@ public class MyAsyncHttp {
             e.printStackTrace();
         }
 
-        LibAsyncHttp.post(url, rparams, new JsonHttpResponseHandler() {
+        LibAsyncHttp.post(context, url, rparams, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 responseHandler.onSuccess(statusCode, response);
@@ -64,15 +65,26 @@ public class MyAsyncHttp {
             public void onProgress(long bytesWritten, long totalSize) {
                 responseHandler.onProgress(bytesWritten, totalSize);
             }
+
+            @Override
+            public void onCancel() {
+                responseHandler.onCancel();
+            }
         });
     }
 
-    //get 返回json数据
-    public static void doLibAsyncHttpGet(String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
+    /**
+     * 调用async-http get请求
+     * @param context 当前context
+     * @param url
+     * @param params 文本参数
+     * @param responseHandler
+     */
+    public static void doLibAsyncHttpGet(Context context, String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
         RequestParams rparams = new RequestParams(params);
 
-        LibAsyncHttp.get(url, rparams, new JsonHttpResponseHandler() {
+        LibAsyncHttp.get(context, url, rparams, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 responseHandler.onSuccess(statusCode, response);
@@ -87,11 +99,23 @@ public class MyAsyncHttp {
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 responseHandler.onFailure(statusCode, errorResponse);
             }
+
+            @Override
+            public void onCancel() {
+                responseHandler.onCancel();
+            }
         });
     }
 
-    public static void doLibAsyncHttpDownload(String url, File target, final MyHttpFileResponseHandler responseHandler) {
-        LibAsyncHttp.get(url, null, new FileAsyncHttpResponseHandler(target) {
+    /**
+     * 调用async-http 下载文件
+     * @param context 当前context
+     * @param url
+     * @param target 下载后存放file
+     * @param responseHandler
+     */
+    public static void doLibAsyncHttpDownload(Context context, String url, File target, final MyHttpFileResponseHandler responseHandler) {
+        LibAsyncHttp.get(context, url, null, new FileAsyncHttpResponseHandler(target) {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
                 responseHandler.onFailure(statusCode, "download error");
@@ -106,6 +130,19 @@ public class MyAsyncHttp {
             public void onProgress(long bytesWritten, long totalSize) {
                 responseHandler.onProgress(bytesWritten, totalSize);
             }
+
+            @Override
+            public void onCancel() {
+                responseHandler.onCancel();
+            }
         });
+    }
+
+    /**
+     * 取消当前context下发起的所有请求
+     * @param context 当前context
+     */
+    public static void doLibAsyncHttpCacel(Context context) {
+        LibAsyncHttp.cancelRequest(context);
     }
 }

@@ -1,7 +1,5 @@
 package com.tsy12321.netdemo.http;
 
-import android.util.Log;
-
 import org.json.JSONObject;
 
 /**
@@ -37,6 +35,13 @@ public abstract class MyHttpJsonResponseHandler {
      * @param totalSize 总字节
      */
     public void onProgress(long bytesWritten, long totalSize) {
-        Log.v("myhttp", String.format("Progress %d from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1));
+        //Log.v("myhttp", String.format("Progress %d from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1));
+    }
+
+    /**
+     * 请求被取消
+     */
+    public void onCancel() {
+        //Log.v("myhttp", "request on cancel");
     }
 }

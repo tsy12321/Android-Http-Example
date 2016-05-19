@@ -24,4 +24,11 @@ public abstract class MyHttpFileResponseHandler {
      * @param totalSize 总字节
      */
     public abstract void onProgress(long bytesWritten, long totalSize);
+
+    /**
+     * 请求被取消
+     */
+    public void onCancel() {
+        //Log.v("myhttp", "request on cancel");
+    }
 }
