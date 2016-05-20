@@ -39,7 +39,9 @@ Git地址：https://android.googlesource.com/platform/frameworks/volley
 
 注意点:
 
-1. git clone后选用android-6.0.1_25 tag的版本,用master最新的出错.将下载后的volley拷贝到项目中删除.git目录以import module的方式导入项目.修改gradle版本,添加dependency即引入volley成功
+1. git clone后选用android-6.0.1_25 tag的版本,用master最新的引入出错
+1. 将下载后的volley删除.git目录和src下test目录,然后拷贝到项目目录中
+1. 修改项目setting.gradle添加":volley",并修改volley的gradle版本变为项目一样的版本,最好项目app添加dependency即引入volley成功
 
 ## 2 项目结构
 
