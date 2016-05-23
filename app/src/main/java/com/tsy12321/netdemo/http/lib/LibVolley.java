@@ -17,25 +17,25 @@ import java.util.Map;
 public class LibVolley {
     private static RequestQueue mRequestQueue;
 
-    public static void post(Context context, String url, Map<String, String> params, Response.Listener<LibVolleyResponseModel> listener, Response.ErrorListener err_listener) {
+    public static void post(Context context, String url, Map<String, String> headers, Map<String, String> params, Response.Listener<LibVolleyResponseModel> listener, Response.ErrorListener err_listener) {
         if(mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(GlobalApp.getInstance().getContext());
         }
 
         LibVolleyJSONObjectRequest request = new LibVolleyJSONObjectRequest(Request.Method.POST, url
-                , null, params, listener, err_listener);
+                , headers, params, listener, err_listener);
 
         request.setTag(context);
         mRequestQueue.add(request);
     }
 
-    public static void get(Context context, String url, Map<String, String> params, Response.Listener<LibVolleyResponseModel> listener, Response.ErrorListener err_listener) {
+    public static void get(Context context, String url, Map<String, String> headers, Map<String, String> params, Response.Listener<LibVolleyResponseModel> listener, Response.ErrorListener err_listener) {
         if(mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(GlobalApp.getInstance().getContext());
         }
 
         LibVolleyJSONObjectRequest request = new LibVolleyJSONObjectRequest(Request.Method.GET, url
-                , null, params, listener, err_listener);
+                , headers, params, listener, err_listener);
 
         request.setTag(context);
         mRequestQueue.add(request);
