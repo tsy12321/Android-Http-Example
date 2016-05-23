@@ -52,7 +52,13 @@ Git地址：https://android.googlesource.com/platform/frameworks/volley
 
 ### android-async-http
 1. LibAsyncHttp.java   ***封装了android-async-http对外提供的接口***
-1. MyAsyncHttp.java    ***连接MyHttp和android-async-http之间通信***
+1. MyAsyncHttp.java    ***android-async-http和myhttp之间连接层***
+
+### volley
+1. LibVolley.java   ***封装了volley的对外post get接口***
+1. LibVolleyResponseModel.java  ***volley返回数据封住***
+1. LibVolleyJSONObjectRequest.java     ***volley自定义的request***
+1. MyVolley.java     ***volley和myhttp之间连接层***
 
 ## 3 调用示例
 

@@ -22,7 +22,7 @@ public class LibVolley {
             mRequestQueue = Volley.newRequestQueue(GlobalApp.getInstance().getContext());
         }
 
-        LibVolleyJsonObjectRequest request = new LibVolleyJsonObjectRequest(Request.Method.POST, url
+        LibVolleyJSONObjectRequest request = new LibVolleyJSONObjectRequest(Request.Method.POST, url
                 , null, params, listener, err_listener);
 
         request.setTag(context);
@@ -34,10 +34,20 @@ public class LibVolley {
             mRequestQueue = Volley.newRequestQueue(GlobalApp.getInstance().getContext());
         }
 
-        LibVolleyJsonObjectRequest request = new LibVolleyJsonObjectRequest(Request.Method.GET, url
+        LibVolleyJSONObjectRequest request = new LibVolleyJSONObjectRequest(Request.Method.GET, url
                 , null, params, listener, err_listener);
 
         request.setTag(context);
         mRequestQueue.add(request);
+    }
+
+    /**
+     * 取消当前context的所有请求
+     * @param context 当前所在context
+     */
+    public static void cancelRequest(Context context) {
+        if(mRequestQueue != null && context != null) {
+            mRequestQueue.cancelAll(context);
+        }
     }
 }

@@ -65,7 +65,7 @@ public class LibAsyncHttp {
     }
 
     /**
-     * android-async-http 取消当前context的所有请求
+     * 取消当前context的所有请求
      * @param context 当前所在context
      */
     public static void cancelRequest(Context context) {

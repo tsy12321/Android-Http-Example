@@ -12,13 +12,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tsy on 16/5/23.
  */
-public class LibVolleyJsonObjectRequest extends Request<LibVolleyResponseModel>{
+public class LibVolleyJSONObjectRequest extends Request<LibVolleyResponseModel>{
 
     private final Response.Listener<LibVolleyResponseModel> mListener;
     private final Map<String, String> mHeaders;
@@ -26,7 +27,7 @@ public class LibVolleyJsonObjectRequest extends Request<LibVolleyResponseModel>{
 
     private static final String PROTOCOL_CHARSET = "utf-8";
 
-    public LibVolleyJsonObjectRequest(int method, String url, Map<String, String> headers, Map<String, String> parmas,
+    public LibVolleyJSONObjectRequest(int method, String url, Map<String, String> headers, Map<String, String> parmas,
                                       Response.Listener<LibVolleyResponseModel> listener, Response.ErrorListener errorListener) {
         super(method, url, errorListener);
         setRetryPolicy(new DefaultRetryPolicy((int) TimeUnit.SECONDS.toMillis(20), DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -43,7 +44,12 @@ public class LibVolleyJsonObjectRequest extends Request<LibVolleyResponseModel>{
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-        return mHeaders;
+        if(mHeaders != null) {
+            return mHeaders;
+        } else {
+            return Collections.emptyMap();
+        }
+
     }
 
     @Override
