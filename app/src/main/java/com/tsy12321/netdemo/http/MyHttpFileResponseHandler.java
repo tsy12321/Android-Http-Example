@@ -1,5 +1,7 @@
 package com.tsy12321.netdemo.http;
 
+import android.util.Log;
+
 /**
  * 文件下载responseHandler
  * Created by tsy on 16/5/18.
@@ -29,6 +31,6 @@ public abstract class MyHttpFileResponseHandler {
      * 请求被取消
      */
     public void onCancel() {
-        //Log.v("myhttp", "request on cancel");
+        Log.v("myhttp", "request on cancel");
     }
 }

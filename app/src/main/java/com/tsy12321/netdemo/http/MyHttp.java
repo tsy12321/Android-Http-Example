@@ -22,18 +22,7 @@ public class MyHttp {
      * @param responseHandler
      */
     public static void doPost(String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
-        doPost(null, url, params, null, responseHandler);
-    }
-
-    /**
-     * Post 文本 文件混合参数
-     * @param url
-     * @param params
-     * @param files key-file方式
-     * @param responseHandler
-     */
-    public static void doPost(String url, Map<String, String>params, Map<String, File>files, final MyHttpJsonResponseHandler responseHandler) {
-        doPost(null, url, params, files, responseHandler);
+        doPost(null, url, params, responseHandler);
     }
 
     /**
@@ -45,20 +34,8 @@ public class MyHttp {
      * @param responseHandler
      */
     public static void doPost(Context context, String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
-        doPost(context, url, params, null, responseHandler);
-    }
-
-    /**
-     * Post 文本 文件混合参数
-     * @param context 当前context
-     * @param url
-     * @param params
-     * @param files key-file方式
-     * @param responseHandler
-     */
-    public static void doPost(Context context, String url, Map<String, String>params, Map<String, File>files, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
-        MyAsyncHttp.doLibAsyncHttpPost(context, url, params, files, responseHandler);
+        MyAsyncHttp.doLibAsyncHttpPost(context, url, params, responseHandler);
     }
 
     /**
@@ -81,6 +58,28 @@ public class MyHttp {
     public static void doGet(Context context, String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
         MyAsyncHttp.doLibAsyncHttpGet(context, url, params, responseHandler);
+    }
+
+    /**
+     * 上传文件
+     * @param url
+     * @param files key-file方式 可以多个文件上传
+     * @param responseHandler
+     */
+    public static void doUpload(String url, Map<String, File>files, final MyHttpFileResponseHandler responseHandler) {
+        doUpload(null, url, files, responseHandler);
+    }
+
+    /**
+     * 上传文件
+     * @param context 当前context
+     * @param url
+     * @param files key-file方式
+     * @param responseHandler
+     */
+    public static void doUpload(Context context, String url, Map<String, File>files, final MyHttpFileResponseHandler responseHandler) {
+        //android-async-http
+        MyAsyncHttp.doLibAsyncHttpUpload(context, url, files, responseHandler);
     }
 
     /**

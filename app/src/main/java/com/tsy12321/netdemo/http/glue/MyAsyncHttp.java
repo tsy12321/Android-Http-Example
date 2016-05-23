@@ -27,23 +27,11 @@ public class MyAsyncHttp {
      * 调用async-http post请求
      * @param context 当前context
      * @param url
-     * @param params 文本参数
-     * @param files 文件参数
+     * @param params
      * @param responseHandler
      */
-    public static void doLibAsyncHttpPost(Context context, String url, Map<String, String>params, Map<String, File>files, final MyHttpJsonResponseHandler responseHandler) {
+    public static void doLibAsyncHttpPost(Context context, String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
         RequestParams rparams = new RequestParams(params);
-
-        //上传文件
-        try {
-            if(files != null && files.size() > 0) {
-                for (Map.Entry<String, File> entry : files.entrySet()) {
-                    rparams.put(entry.getKey(), entry.getValue());
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
         LibAsyncHttp.post(context, url, rparams, new JsonHttpResponseHandler() {
             @Override
@@ -58,12 +46,7 @@ public class MyAsyncHttp {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                responseHandler.onFailure(statusCode, errorResponse);
-            }
-
-            @Override
-            public void onProgress(long bytesWritten, long totalSize) {
-                responseHandler.onProgress(bytesWritten, totalSize);
+                responseHandler.onFailure(statusCode, errorResponse + "");
             }
 
             @Override
@@ -97,7 +80,57 @@ public class MyAsyncHttp {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                responseHandler.onFailure(statusCode, errorResponse);
+                responseHandler.onFailure(statusCode, errorResponse + "");
+            }
+
+            @Override
+            public void onCancel() {
+                responseHandler.onCancel();
+            }
+        });
+    }
+
+    /**
+     * 调用async-http 上传文件
+     * @param context 当前context
+     * @param url
+     * @param files
+     * @param responseHandler
+     */
+    public static void doLibAsyncHttpUpload(Context context, String url, Map<String, File>files, final MyHttpFileResponseHandler responseHandler) {
+        RequestParams rparams = new RequestParams();
+
+        try {
+            if (files != null && files.size() > 0) {
+                for (Map.Entry<String, File> entry : files.entrySet()) {
+                    rparams.put(entry.getKey(), entry.getValue());
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            responseHandler.onFailure(0, "FileNotFoundException");
+            return;
+        }
+
+        LibAsyncHttp.post(context, url, rparams, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                responseHandler.onSuccess(statusCode);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                responseHandler.onFailure(statusCode, responseString);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                responseHandler.onFailure(statusCode, errorResponse + "");
+            }
+
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+                responseHandler.onProgress(bytesWritten, totalSize);
             }
 
             @Override
