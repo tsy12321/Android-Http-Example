@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile project(':volley-android-6.0.1_25')
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
 }

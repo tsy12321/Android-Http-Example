@@ -37,12 +37,14 @@ Git地址：https://android.googlesource.com/platform/frameworks/volley
 
 官网地址：https://developer.android.com/training/volley/index.html?hl=zh-cn
 
+郭霖的volley解析：http://blog.csdn.net/guolin_blog/article/details/17482095
+
 注意点:
 
 1. git clone后选用android-6.0.1_25 tag的版本,用master最新的引入出错
 1. 将下载后的volley删除.git目录和src下test目录,然后拷贝到项目目录中
 1. 修改项目setting.gradle添加":volley",并修改volley的gradle版本变为项目一样的版本,最好项目app添加dependency即引入volley成功
-1. volley仅实现post和get请求,upload和download未实现
+1. volley仅实现post和get请求,upload和download未实现.(volley不适合大数据下载文件下载等，因为volley会在parse过程中将数据缓存在内存中)
 1. volley cacelRequest无onCancel事件触发
 1. volley只能获取第一个cookie,如果需要多个cookie参考此[文章](http://www.w2bc.com/article/31961)
 

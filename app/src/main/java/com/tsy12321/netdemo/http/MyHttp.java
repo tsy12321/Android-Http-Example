@@ -17,18 +17,7 @@ public class MyHttp {
     /**
      * Post 文本参数
      * 回调Json数据
-     * @param url
-     * @param params
-     * @param responseHandler
-     */
-    public static void doPost(String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
-        doPost(null, url, params, responseHandler);
-    }
-
-    /**
-     * Post 文本参数
-     * 回调Json数据
-     * @param context 当前context
+     * @param context 当前context 非app context
      * @param url
      * @param params
      * @param responseHandler
@@ -43,17 +32,7 @@ public class MyHttp {
 
     /**
      * Get请求
-     * @param url
-     * @param params
-     * @param responseHandler
-     */
-    public static void doGet(String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
-        doGet(null, url, params, responseHandler);
-    }
-
-    /**
-     * Get请求
-     * @param context 当前context
+     * @param context 当前context 非app context
      * @param url
      * @param params
      * @param responseHandler
@@ -68,17 +47,7 @@ public class MyHttp {
 
     /**
      * 上传文件
-     * @param url
-     * @param files key-file方式 可以多个文件上传
-     * @param responseHandler
-     */
-    public static void doUpload(String url, Map<String, File>files, final MyHttpFileResponseHandler responseHandler) {
-        doUpload(null, url, files, responseHandler);
-    }
-
-    /**
-     * 上传文件
-     * @param context 当前context
+     * @param context 当前context 非app context
      * @param url
      * @param files key-file方式
      * @param responseHandler
@@ -90,17 +59,7 @@ public class MyHttp {
 
     /**
      * 下载文件
-     * @param url 下载地址
-     * @param target 下载目的file
-     * @param responseHandler
-     */
-    public static void doDownload(String url, File target, final MyHttpFileResponseHandler responseHandler) {
-        doDownload(null, url, target, responseHandler);
-    }
-
-    /**
-     * 下载文件
-     * @param context 当前context
+     * @param context 当前context 非app context
      * @param url 下载地址
      * @param target 下载目的file
      * @param responseHandler
@@ -112,7 +71,7 @@ public class MyHttp {
 
     /**
      * 取消当前context的所有请求
-     * @param context 当前context
+     * @param context 当前context 非app context
      */
     public static void cancelRequest(Context context) {
         //android-async-http
