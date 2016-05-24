@@ -3,6 +3,7 @@ package com.tsy12321.netdemo.http;
 import android.content.Context;
 
 import com.tsy12321.netdemo.http.glue.MyAsyncHttp;
+import com.tsy12321.netdemo.http.glue.MyOkHttp;
 
 import java.io.File;
 import java.util.Map;
@@ -24,10 +25,13 @@ public class MyHttp {
      */
     public static void doPost(Context context, String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
-        MyAsyncHttp.doLibAsyncHttpPost(context, url, params, responseHandler);
+        //MyAsyncHttp.doLibAsyncHttpPost(context, url, params, responseHandler);
 
         //volley
         //MyVolley.doLibVolleyPost(context, url, params, responseHandler);
+
+        //okhttp
+        MyOkHttp.doLibOkHttpPost(context, url, params, responseHandler);
     }
 
     /**
@@ -39,10 +43,13 @@ public class MyHttp {
      */
     public static void doGet(Context context, String url, Map<String, String>params, final MyHttpJsonResponseHandler responseHandler) {
         //android-async-http
-        MyAsyncHttp.doLibAsyncHttpGet(context, url, params, responseHandler);
+        //MyAsyncHttp.doLibAsyncHttpGet(context, url, params, responseHandler);
 
         //volley
         //MyVolley.doLibVolleyGet(context, url, params, responseHandler);
+
+        //okhttp
+        MyOkHttp.doLibOkHttpGet(context, url, params, responseHandler);
     }
 
     /**

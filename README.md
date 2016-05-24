@@ -1,5 +1,5 @@
 # Android-Http-Example
-Android网络请求的统一封装和调用.集成了android-async-http, volley, okhttp等网络请求框架.可直接切换底层库.
+Android网络请求的统一封装和调用.集成了android-async-http, volley, okhttp3等网络请求框架.可直接切换底层库.
 
 ## 1 简介
 
@@ -48,26 +48,32 @@ Git地址：https://android.googlesource.com/platform/frameworks/volley
 1. volley cacelRequest无onCancel事件触发
 1. volley只能获取第一个cookie,如果需要多个cookie参考此[文章](http://www.w2bc.com/article/31961)
 
-### okhttp
+### okhttp3
 
 官方地址: http://square.github.io/okhttp/
+
+注意点:
 
 ## 2 项目结构
 
 ### 统一调用层
-1. MyHttp.java     ***调用入口***
-1. MyHttpJsonResponseHandler.java      ***请求回调json数据***
-1. MyHttpFileResponseHandler.java      ***文件下载回调***
+1. MyHttp.java     (**调用入口**)
+1. MyHttpJsonResponseHandler.java      (**请求回调json数据**)
+1. MyHttpFileResponseHandler.java      (**文件下载回调**)
 
 ### android-async-http
-1. LibAsyncHttp.java   ***封装了android-async-http对外提供的接口***
-1. MyAsyncHttp.java    ***android-async-http和myhttp之间连接层***
+1. LibAsyncHttp.java   (**封装了android-async-http对外提供的接口**)
+1. MyAsyncHttp.java    (**android-async-http和myhttp之间连接层**)
 
 ### volley
-1. LibVolley.java   ***封装了volley的对外post get接口***
-1. LibVolleyResponseModel.java  ***volley返回数据封住***
-1. LibVolleyJSONObjectRequest.java     ***volley自定义的request***
-1. MyVolley.java     ***volley和myhttp之间连接层***
+1. LibVolley.java  (**封装了volley的对外post get接口**)
+1. LibVolleyResponseModel.java  (**volley返回数据封住**)
+1. LibVolleyJSONObjectRequest.java     (**volley自定义的request**)
+1. MyVolley.java     (**volley和myhttp之间连接层**)
+
+### okhttp
+1. LibOkHttp.java   (**封装了okhttp的对外接口**)
+1. MyOkHttp.java    (**okhttp和myhttp之间连接层**)
 
 ## 3 调用示例
 
