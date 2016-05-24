@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         params.put("uid", "111");
 
         //get
-        MyHttp.doGet(this, "http://192.168.3.1/test_post.php", params, new MyHttpJsonResponseHandler() {
+        MyHttp.doGet(this, "http://192.168.3.1/get_attention_forum.php", params, new MyHttpJsonResponseHandler() {
             @Override
             public void onSuccess(int statusCode, JSONObject response) {
                 Log.i("tsy", "onSuccess status code=" + statusCode + " response=" + response);

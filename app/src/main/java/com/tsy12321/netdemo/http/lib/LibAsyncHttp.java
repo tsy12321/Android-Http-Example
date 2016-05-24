@@ -54,9 +54,6 @@ public class LibAsyncHttp {
             client.setUserAgent(getAgaent());
         }
 
-        PersistentCookieStore cookieStore = new PersistentCookieStore(GlobalApp.getInstance().getContext());
-        client.setCookieStore(cookieStore);
-
         if(context != null) {
             client.get(context, url, params, responseHandler);
         } else {

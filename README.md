@@ -1,5 +1,5 @@
 # Android-Http-Example
-Android网络请求的统一封装和调用.集成了android-async-http, volley等网络请求框架.可直接切换底层库.
+Android网络请求的统一封装和调用.集成了android-async-http, volley, okhttp等网络请求框架.可直接切换底层库.
 
 ## 1 简介
 
@@ -47,6 +47,10 @@ Git地址：https://android.googlesource.com/platform/frameworks/volley
 1. volley仅实现post和get请求,upload和download未实现.(volley不适合大数据下载文件下载等，因为volley会在parse过程中将数据缓存在内存中)
 1. volley cacelRequest无onCancel事件触发
 1. volley只能获取第一个cookie,如果需要多个cookie参考此[文章](http://www.w2bc.com/article/31961)
+
+### okhttp
+
+官方地址: http://square.github.io/okhttp/
 
 ## 2 项目结构
 

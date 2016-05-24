@@ -59,16 +59,9 @@ public class MyVolley {
     public static void doLibVolleyGet(Context context, String url, Map<String, String> params, final MyHttpJsonResponseHandler responseHandler) {
         Map<String, String> headers = new HashMap<String, String>();
 
-        //读取cookie放入header
-        String cookie = SharedPreferenceUtils.readSharedPreferences(GlobalApp.getInstance().getContext(), "cookie");
-        headers.put("Cookie", cookie);
-
         LibVolley.get(context, url, headers, params, new Response.Listener<LibVolleyResponseModel>() {
             @Override
             public void onResponse(LibVolleyResponseModel response) {
-                //将cookie保存
-                String cookie = response.headers.get("Set-Cookie");
-                SharedPreferenceUtils.saveSharedPreferences(GlobalApp.getInstance().getContext(), "cookie", cookie);
                 responseHandler.onSuccess(response.status, response.data);
             }
         }, new Response.ErrorListener() {
