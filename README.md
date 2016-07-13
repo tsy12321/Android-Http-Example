@@ -194,3 +194,7 @@ Git地址：https://android.googlesource.com/platform/frameworks/volley
             MyHttp.cancelRequest(this);     //页面退出 关闭所有请求
         }
 ```
+
+### 欢迎关注我的公众号
+
+![我的公众号](http://upload-images.jianshu.io/upload_images/1594931-a5b65451c706c2cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
