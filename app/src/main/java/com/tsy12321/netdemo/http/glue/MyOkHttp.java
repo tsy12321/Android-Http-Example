@@ -23,7 +23,7 @@ public class MyOkHttp {
 
     public static void doLibOkHttpPost(Context context, String url, Map<String, String> params, final MyHttpJsonResponseHandler responseHandler) {
         final Handler handler = new Handler();
-        LibOkHttp.post(url, params, new Callback() {
+        LibOkHttp.post(context, url, params, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 handler.post(new Runnable() {
@@ -76,7 +76,7 @@ public class MyOkHttp {
         }
 
         final Handler handler = new Handler();
-        LibOkHttp.get(url, new Callback() {
+        LibOkHttp.get(context, url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 handler.post(new Runnable() {
